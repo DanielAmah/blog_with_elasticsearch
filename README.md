@@ -5,20 +5,22 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
+### Ruby version
+Ruby version 2 and above
 
-* System dependencies
+### System dependencies
 
-* Configuration
+#### Configuration
+install elasticsearch using
+`brew install elasticsearch` on Mac
 
-* Database creation
+`go to localhost:9200` to see a json response
 
-* Database initialization
+#### Database creation
+  `rails db:setup` to create and setup the database
 
-* How to run the test suite
+#### Database Migration
+  `rails db:migrate`
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Start the rails server
+  `rails server`
