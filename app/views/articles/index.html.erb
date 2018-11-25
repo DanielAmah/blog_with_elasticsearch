@@ -1,3 +1,28 @@
+<%= form_for search_path, method: :get do |f| %>
+<p>
+<%=f.label "Search for" %>
+<%= text_field_tag :q, params[:q] %>
+<%= submit_tag "Go", name: nil %>
+</p>
+<% end %>
+
+<% if params[:q] %>
+<ul>
+    <% @articles.each do |article| %>
+      <li>
+        <h3>
+          <%= link_to article.try(:hightlight).try(:title) ? article.highlight.title[0].html_safe: article.title, controller: "articles", action: "show", id: article._id %>
+        </h3>
+        <% if article.try(:highlight).try(:text) %>
+          <% article.highlight.text.each do |snippet| %>
+            <p><%= snippet.html_safe %>...</p>
+          <% end %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+<% else %>
 <h1>Articles</h1>
 <ul>
   <% @articles.each do |article| %>
@@ -13,4 +38,6 @@
     </li>
   <% end %>
 </ul>
+<%end%>
+
 <%= link_to "New Article", new_article_path %>

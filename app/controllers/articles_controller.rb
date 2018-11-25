@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
   def index
-    @articles = Article.all
+    @articles = params[:q].nil? ? Article.all : Article.search(params[:q])
   end
 
   def show
